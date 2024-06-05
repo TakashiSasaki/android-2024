@@ -26,6 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         val lvMenu = findViewById<ListView>(R.id.lvMenu)
         lvMenu.adapter = adapter
-
+        //lvMenu.setAdapter(adapter)
     }//onCreate
 }//MainActivity
