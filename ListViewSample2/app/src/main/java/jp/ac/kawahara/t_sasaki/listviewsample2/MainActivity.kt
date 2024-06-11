@@ -1,9 +1,12 @@
 package jp.ac.kawahara.t_sasaki.listviewsample2
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,5 +30,18 @@ class MainActivity : AppCompatActivity() {
         val lvMenu = findViewById<ListView>(R.id.lvMenu)
         lvMenu.adapter = adapter
         //lvMenu.setAdapter(adapter)
-    }//onCreate
-}//MainActivity
+        lvMenu.onItemClickListener = ListItemClickListener()
+    }// fun onCreate
+
+    private inner class ListItemClickListener : AdapterView.OnItemClickListener {
+        override fun onItemClick
+                    (parent: AdapterView<*>,
+                     view: View?, position: Int, id: Long) {
+            val dialogFragment = OrderConfirmDialogFragment()
+            dialogFragment.show(supportFragmentManager,
+                "OrderConfirmFragmentManager")
+        }//fun onItemClick
+
+    }// class ListItemClickListener
+
+}// class MainActivity

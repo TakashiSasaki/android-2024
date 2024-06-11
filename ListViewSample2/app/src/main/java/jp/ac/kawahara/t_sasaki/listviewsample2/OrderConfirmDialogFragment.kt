@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 class OrderConfirmDialogFragment :  DialogFragment(){
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // アクティビティがnullでないならばダイアログオブジェクトを生成。
         val dialog : AlertDialog? = activity?.let {
@@ -15,7 +16,7 @@ class OrderConfirmDialogFragment :  DialogFragment(){
             // ダイアログのタイトルを設定。
             builder.setTitle(R.string.dialog_title)
             // ダイアログのメッセージを設定。
-            builder.setMessage(R.string.dialog_msg)
+            builder.setMessage( R.string.dialog_msg)
             // Positive Buttonを設定。
             builder.setPositiveButton(R.string.dialog_btn_ok, DialogButtonClickListener())
             // Negative Buttonを設定。
@@ -53,6 +54,7 @@ class OrderConfirmDialogFragment :  DialogFragment(){
             // activity のフルネーム？はthis@OrderConfirmDialogFragment.activity
             Toast.makeText(activity, msg, Toast.LENGTH_LONG).show()
         }// fun onClick
+
     }// class DialogButtonClickListener
 
 
