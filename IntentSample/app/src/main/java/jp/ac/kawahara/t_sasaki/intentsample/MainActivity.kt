@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         // 教科書の書き方
         //val menuList2 : MutableList<MutableMap<String,String>> = mutableListOf()
         // 別の書き方
