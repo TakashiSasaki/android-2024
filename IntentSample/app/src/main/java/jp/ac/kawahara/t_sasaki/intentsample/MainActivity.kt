@@ -1,6 +1,10 @@
 package jp.ac.kawahara.t_sasaki.intentsample
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import androidx.activity.enableEdgeToEdge
@@ -32,5 +36,31 @@ class MainActivity : AppCompatActivity() {
             to)
 
         findViewById<ListView>(R.id.lvMenu).adapter = adapter
+        findViewById<ListView>(R.id.lvMenu).onItemClickListener =
+            ListItemClickListener()
     }//onCreate
+
+    private inner class ListItemClickListener : OnItemClickListener{
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            TODO("Not yet implemented")
+
+            val intent2MenuThanks =
+                Intent(this@MainActivity,
+                    MenuThanksActivity::class.java)
+            startActivity(intent2MenuThanks)
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }//MainActivity
