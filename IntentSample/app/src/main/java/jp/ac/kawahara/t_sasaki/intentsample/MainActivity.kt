@@ -47,8 +47,7 @@ class MainActivity : AppCompatActivity() {
             val menuName : String? = item["name"]
             val menuPrice : String? = item["price"]
 
-            val intent2MenuThanks =
-                Intent(this@MainActivity,
+            val intent2MenuThanks = Intent(this@MainActivity,
                     MenuThanksActivity::class.java)
             intent2MenuThanks.putExtra("menuName", menuName)
             intent2MenuThanks.putExtra("menuPrice", menuPrice)

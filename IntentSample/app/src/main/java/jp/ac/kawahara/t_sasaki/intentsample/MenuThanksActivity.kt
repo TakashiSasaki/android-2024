@@ -1,6 +1,7 @@
 package jp.ac.kawahara.t_sasaki.intentsample
 
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,4 +19,9 @@ class MenuThanksActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvMenuName).text = menuName
         findViewById<TextView>(R.id.tvMenuPrice).text = menuPrice
     }
+
+    fun onBackButtonClick(v: View){
+        finish()
+    }
+
 }
