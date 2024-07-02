@@ -41,11 +41,17 @@ class MainActivity : AppCompatActivity() {
     }//onCreate
 
     private inner class ListItemClickListener : OnItemClickListener{
-        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        override fun onItemClick(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            val item = parent.getItemAtPosition(position)
+                            as MutableMap<String, String>
+            val menuName : String? = item["name"]
+            val menuPrice : String? = item["price"]
 
             val intent2MenuThanks =
                 Intent(this@MainActivity,
                     MenuThanksActivity::class.java)
+            intent.putExtra("menuName", menuName)
+            intent.putExtra("menuPrice", menuPrice)
             startActivity(intent2MenuThanks)
         }
 
