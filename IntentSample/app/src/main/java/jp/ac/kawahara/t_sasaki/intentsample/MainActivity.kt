@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
             val intent2MenuThanks =
                 Intent(this@MainActivity,
                     MenuThanksActivity::class.java)
-            intent.putExtra("menuName", menuName)
-            intent.putExtra("menuPrice", menuPrice)
+            intent2MenuThanks.putExtra("menuName", menuName)
+            intent2MenuThanks.putExtra("menuPrice", menuPrice)
             startActivity(intent2MenuThanks)
         }
 
