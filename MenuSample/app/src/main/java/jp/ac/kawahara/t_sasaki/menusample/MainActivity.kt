@@ -3,6 +3,7 @@ package jp.ac.kawahara.t_sasaki.menusample
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
@@ -37,6 +38,27 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.menuListOptionTeishoku->{
+                _menuList = createTeishokuList()
+            }
+            R.id.menuListOptionCurry->{
+                _menuList = createCurryList()
+            }
+            else->{
+                return super.onOptionsItemSelected(item)
+            }
+        }//when
+        val adapter = SimpleAdapter(this,
+            _menuList, R.layout.row,
+            _from, _to)
+        val lvMenu = findViewById<ListView>(R.id.lvMenu)
+        lvMenu.adapter = adapter
+        return true;
+    }// onOptionsItemSelected
+
     private fun createTeishokuList(): MutableList<MutableMap<String, Any>> {
         var menuList : MutableList<MutableMap<String, Any>> = mutableListOf()
         menuList.add(mutableMapOf("name" to "唐揚げ定食",
@@ -46,7 +68,19 @@ class MainActivity : AppCompatActivity() {
             "price" to 850,
             "desc" to "手ごねハンバーグにサラダ、ご飯とお味噌汁が付きます。"))
         return menuList
-    }
+    }//createTeishokuList
+
+    private fun createCurryList(): MutableList<MutableMap<String, Any>> {
+        var menuList : MutableList<MutableMap<String, Any>> = mutableListOf()
+        menuList.add(mutableMapOf("name" to "ビーフカレー",
+            "price" to 520,
+            "desc" to "特選スパイスをきかせた国産ビーフ100％のカレーです。"))
+        menuList.add(mutableMapOf("name" to "ポークカレー",
+            "price" to 420,
+            "desc" to "特選スパイスをきかせた国産ポーク100％のカレーです。"))
+        return menuList
+    }//createCurryList
+
     private inner class ListItemClickListener : AdapterView.OnItemClickListener {
         override fun onItemClick(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
             val item = parent.getItemAtPosition(position)
