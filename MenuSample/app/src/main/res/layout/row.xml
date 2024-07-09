@@ -14,11 +14,13 @@
         android:layout_marginTop="8dp"
         android:background="#EAFFD1"
         android:textSize="18sp"
+        android:text="定食の名前"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvMenuPriceRow"
+        android:text="定食の価格"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
