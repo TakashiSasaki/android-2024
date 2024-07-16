@@ -30,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         val lvMenu = findViewById<ListView>(R.id.lvMenu)
         lvMenu.adapter = adapter
         lvMenu.onItemClickListener = ListItemClickListener()
+
+
     }// onCreate
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
