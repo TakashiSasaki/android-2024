@@ -7,8 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.ListView
 import android.widget.SimpleAdapter
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -92,9 +94,9 @@ class MainActivity : AppCompatActivity() {
 
     } // ListItemClickListener
 
-    private fun order(item: MutableMap<String, Any>){
-        val menuName = item["name"] as String
-        val menuPrice = item["price"] as Int
+    private fun order(mapItem: MutableMap<String, Any>){
+        val menuName = mapItem["name"] as String
+        val menuPrice = mapItem["price"] as Int
 
         val intent2MenuThanks = Intent(this@MainActivity,
             MenuThanksActivity::class.java)
@@ -114,9 +116,28 @@ class MainActivity : AppCompatActivity() {
         menu.setHeaderTitle(R.string.menu_list_context_header)
     }//onCreateContextMenu
 
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        var info = item.menuInfo as AdapterContextMenuInfo
+        val listPosition = info.position
+        val menu : MutableMap<String, Any> = _menuList[listPosition]
 
+        when(item.itemId){
+            R.id.menuListContextDesc->{
+                val desc = menu["desc"] as String
+                Toast.makeText(this, desc,
+                    Toast.LENGTH_LONG).show()
+                return true
+            }
+            R.id.menuListContextOrder->{
+                order(menu)
+                return true
+            }
+            else -> {
+                return super.onContextItemSelected(item)
+            }
+        }//when
 
-
+    }//onContextItemSelected
 
 
 
