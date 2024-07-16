@@ -87,18 +87,22 @@ class MainActivity : AppCompatActivity() {
         override fun onItemClick(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
             val item = parent.getItemAtPosition(position)
                             as MutableMap<String, Any>
-            val menuName = item["name"] as String
-            val menuPrice = item["price"] as Int
-
-            val intent2MenuThanks = Intent(this@MainActivity,
-                MenuThanksActivity::class.java)
-            intent2MenuThanks.putExtra("menuName", menuName)
-            intent2MenuThanks.putExtra("menuPrice",
-                "${menuPrice}円")
-            startActivity(intent2MenuThanks)
+            order(item)
         }// onItemClick
 
     } // ListItemClickListener
+
+    private fun order(item: MutableMap<String, Any>){
+        val menuName = item["name"] as String
+        val menuPrice = item["price"] as Int
+
+        val intent2MenuThanks = Intent(this@MainActivity,
+            MenuThanksActivity::class.java)
+        intent2MenuThanks.putExtra("menuName", menuName)
+        intent2MenuThanks.putExtra("menuPrice",
+            "${menuPrice}円")
+        startActivity(intent2MenuThanks)
+    }//order
 
     override fun onCreateContextMenu(
         menu: ContextMenu,
