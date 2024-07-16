@@ -8,4 +8,4 @@
     <item
         android:id="@+id/menuListContextOrder"
         android:title="@string/menu_list_context_order"/>
-</menu>:
+</menu>
