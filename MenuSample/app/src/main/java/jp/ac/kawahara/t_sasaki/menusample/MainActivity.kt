@@ -11,10 +11,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -116,12 +113,12 @@ class MainActivity : AppCompatActivity() {
         menu.setHeaderTitle(R.string.menu_list_context_header)
     }//onCreateContextMenu
 
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        var info = item.menuInfo as AdapterContextMenuInfo
+    override fun onContextItemSelected(menuItem: MenuItem): Boolean {
+        var info = menuItem.menuInfo as AdapterContextMenuInfo
         val listPosition = info.position
         val menu : MutableMap<String, Any> = _menuList[listPosition]
 
-        when(item.itemId){
+        when(menuItem.itemId){
             R.id.menuListContextDesc->{
                 val desc = menu["desc"] as String
                 Toast.makeText(this, desc,
@@ -133,10 +130,9 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             else -> {
-                return super.onContextItemSelected(item)
+                return super.onContextItemSelected(menuItem)
             }
         }//when
-
     }//onContextItemSelected
 
 
