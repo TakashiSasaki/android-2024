@@ -27,6 +27,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:enabled="false"
+        android:onClick="onPlayButtonClick"
         android:text="@string/bt_play_play"
         app:layout_constraintEnd_toStartOf="@+id/btForward"
         app:layout_constraintStart_toEndOf="@+id/btBack"
@@ -39,6 +40,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:enabled="false"
+        android:onClick="onForwardButtonClick"
         android:text="@string/bt_forward"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

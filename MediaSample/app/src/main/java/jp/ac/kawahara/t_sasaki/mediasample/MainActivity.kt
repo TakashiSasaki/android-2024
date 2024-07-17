@@ -7,6 +7,7 @@ import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -55,7 +56,18 @@ class MainActivity : AppCompatActivity() {
         }//onCompletion
     }//PlayerCompletionListener
 
-
+    public fun onPlayButtonClick(v: View){
+        val btPlay = findViewById<Button>(R.id.btPlay)
+        _player?.let{
+            if(it.isPlaying){
+                it.pause()
+                btPlay.setText(R.string.bt_play_play)
+            } else {
+                it.start()
+                btPlay.setText(R.string.bt_play_pause)
+            }//if
+        }//let
+    }//onPlayButtonClick
 
 
 
