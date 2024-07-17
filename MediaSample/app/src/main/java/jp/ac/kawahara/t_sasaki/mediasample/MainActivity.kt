@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
-    var _player : MediaPlayer? = null
+    var _player: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         Log.i("MediaSample", mediaFileUriStr)
         val mediaFileUri = Uri.parse(mediaFileUriStr)
 
-        _player?.let{
+        _player?.let {
             it.setDataSource(this, mediaFileUri)
             it.setOnPreparedListener(PlayerPreparedListener())
             it.setOnCompletionListener(PlayerCompletionListener())
@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
         }//onCompletion
     }//PlayerCompletionListener
 
-    public fun onPlayButtonClick(v: View){
+    fun onPlayButtonClick(v: View) {
         val btPlay = findViewById<Button>(R.id.btPlay)
-        _player?.let{
-            if(it.isPlaying){
+        _player?.let {
+            if (it.isPlaying) {
                 it.pause()
                 btPlay.setText(R.string.bt_play_play)
             } else {
@@ -69,23 +69,23 @@ class MainActivity : AppCompatActivity() {
         }//let
     }//onPlayButtonClick
 
+    fun onBackButtonClick(v: View) {
+        _player?.seekTo(0)
+    }//onBackButtonClick
 
-
-
-
-
-
-
-
-
-
-
-
-
+    fun onForwardButtonClick(v: View) {
+        _player?.let {
+            it.seekTo(it.duration)
+            if (!it.isPlaying) {
+                findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_pause)
+                it.start()
+            }//if
+        }//let
+    }//onForwardButtonClick
 
     override fun onStop() {
-        _player?.let{
-            if(it.isPlaying){
+        _player?.let {
+            if (it.isPlaying) {
                 it.stop()
             }
             it.release()
