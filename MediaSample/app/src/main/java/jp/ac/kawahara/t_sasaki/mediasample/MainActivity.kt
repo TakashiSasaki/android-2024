@@ -1,9 +1,12 @@
 package jp.ac.kawahara.t_sasaki.mediasample
 
 import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
+import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,6 +35,21 @@ class MainActivity : AppCompatActivity() {
         _player?.let{
             it.setDataSource(this, mediaFileUri)
             
-        }
-    }
-}
+        }//let
+    }//onCreate
+
+    private inner class PlayerPreparedListener : OnPreparedListener {
+        override fun onPrepared(mp: MediaPlayer?) {
+            findViewById<Button>(R.id.btBack).isEnabled = true
+            findViewById<Button>(R.id.btPlay).isEnabled = true
+            findViewById<Button>(R.id.btForward).isEnabled = true
+        }//onPrepared
+    }//PlayerPreparedListener
+
+    private inner class PlayerCompletionListener : OnCompletionListener {
+        override fun onCompletion(mp: MediaPlayer?) {
+            findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_play)
+        }//onCompletion
+    }//PlayerCompletionListener
+
+}//MainActivity
