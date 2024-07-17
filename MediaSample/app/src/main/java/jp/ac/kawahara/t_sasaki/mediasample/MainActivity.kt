@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
 
         _player?.let{
             it.setDataSource(this, mediaFileUri)
-            
+            it.setOnPreparedListener(PlayerPreparedListener())
+            it.setOnCompletionListener(PlayerCompletionListener())
+            it.prepareAsync()
         }//let
     }//onCreate
 
