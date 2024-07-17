@@ -9,10 +9,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CompoundButton
+import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +43,10 @@ class MainActivity : AppCompatActivity() {
             it.setOnCompletionListener(PlayerCompletionListener())
             it.prepareAsync()
         }//let
+
+        findViewById<SwitchMaterial>(R.id.swLoop)
+            .setOnCheckedChangeListener(LoopSwitchChangedListener())
+
     }//onCreate
 
     private inner class PlayerPreparedListener : OnPreparedListener {
@@ -52,7 +59,11 @@ class MainActivity : AppCompatActivity() {
 
     private inner class PlayerCompletionListener : OnCompletionListener {
         override fun onCompletion(mp: MediaPlayer?) {
-            findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_play)
+            _player?.let{
+                if(!it.isLooping) {
+                    findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_play)
+                }
+            }
         }//onCompletion
     }//PlayerCompletionListener
 
@@ -75,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onForwardButtonClick(v: View) {
         _player?.let {
-            it.seekTo(it.duration)
+            it.seekTo(it.duration - 1000)
             if (!it.isPlaying) {
                 findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_pause)
                 it.start()
@@ -92,5 +103,13 @@ class MainActivity : AppCompatActivity() {
         }//let
         super.onStop()
     }//onStop
+
+
+    private inner class LoopSwitchChangedListener : OnCheckedChangeListener {
+        override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+            _player?.isLooping = isChecked
+        }//onCheckedChanged
+    }//LoopSwitchChangedListener
+
 
 }//MainActivity
