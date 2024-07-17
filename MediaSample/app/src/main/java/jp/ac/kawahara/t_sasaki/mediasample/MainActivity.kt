@@ -1,6 +1,7 @@
 package jp.ac.kawahara.t_sasaki.mediasample
 
 import android.media.MediaPlayer
+import android.media.MediaPlayer.MEDIA_INFO_VIDEO_TRACK_LAGGING
 import android.media.MediaPlayer.OnCompletionListener
 import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
@@ -53,5 +54,31 @@ class MainActivity : AppCompatActivity() {
             findViewById<Button>(R.id.btPlay).setText(R.string.bt_play_play)
         }//onCompletion
     }//PlayerCompletionListener
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    override fun onStop() {
+        _player?.let{
+            if(it.isPlaying){
+                it.stop()
+            }
+            it.release()
+        }//let
+        super.onStop()
+    }//onStop
 
 }//MainActivity
