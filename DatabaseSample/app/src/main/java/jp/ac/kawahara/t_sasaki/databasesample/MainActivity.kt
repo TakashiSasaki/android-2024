@@ -77,6 +77,18 @@ class MainActivity : AppCompatActivity() {
             val btnSave = findViewById<Button>(R.id.btnSave)
             // 保存ボタンをタップできるように設定。
             btnSave.isEnabled = true
+
+            //既存のデータを取得して表示する
+            val db = _helper.readableDatabase
+            val sql = "SELECT * FROM cocktailmemos WHERE _id = ${_cocktailId}"
+            val cursor = db.rawQuery(sql, null)
+            var note = ""
+            while (cursor.moveToNext()){
+                val idxNote = cursor.getColumnIndex("note")
+                note = cursor.getString(idxNote)
+            }
+            val etNote = findViewById<EditText>(R.id.etNote)
+            etNote.setText(note)
         }//onItemClick
     }//ListItemClickListener
 
