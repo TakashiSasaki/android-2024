@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Horizontal Guideline at 40% from the top -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLvCocktail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.40"
+        android:orientation="horizontal" />
+
+    <!-- ListView for displaying cocktails -->
+    <ListView
+        android:id="@+id/lvCocktail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:entries="@array/lv_cocktaillist"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glLvCocktail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- TextView for displaying the label "Selected Cocktail" -->
+    <TextView
+        android:id="@+id/tvLbName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_lb_name"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/glLvCocktail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp" />
+
+    <!-- TextView for displaying the selected cocktail name -->
+    <TextView
+        android:id="@+id/tvCocktailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_name"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/glLvCocktail"
+        app:layout_constraintLeft_toRightOf="@+id/tvLbName"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp" />
+
+    <!-- TextView for displaying the label "Note" -->
+    <TextView
+        android:id="@+id/tvLbNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_lb_note"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvLbName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp" />
+
+    <!-- EditText for entering the note -->
+    <EditText
+        android:id="@+id/etNote"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvLbNote"
+        app:layout_constraintBottom_toTopOf="@+id/btnSave"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <!-- Save button -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_save"
+        android:enabled="false"
+        android:onClick="onSaveButtonClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
