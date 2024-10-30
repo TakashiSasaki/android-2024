@@ -1,6 +1,7 @@
 package jp.ac.kawahara.t_sasaki.asyncsample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val DEBUG_TAG = "AsyncSample"
         private const val WEATHERINFO_URL =
-            "https //api.openweathermap.org/data/2.5/weather?lang=ja"
+            "https://api.openweathermap.org/data/2.5/weather?lang=ja"
         private const val APP_ID = "64d4dd0bb9c25f6e3179a45bccdf68cf"
     }
 
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             val q = item.get("q")
             q?.let {
                 val urlFull = "$WEATHERINFO_URL&q=$q&appid=$APP_ID"
+                Log.d(DEBUG_TAG, urlFull)
                 receiveWeatherInfo(urlFull)
             }
         }
