@@ -21,10 +21,7 @@
         app:layout_constraintBottom_toTopOf="@+id/glLvCityList"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_margin="0dp"
-        app:layout_constraintBottom_margin="0dp"
-        app:layout_constraintLeft_margin="0dp"
-        app:layout_constraintRight_margin="0dp" />
+ />
 
     <TextView
         android:id="@+id/tvWinfoTitle"
@@ -36,9 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lvCityList"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_margin="8dp"
-        app:layout_constraintLeft_margin="8dp"
-        app:layout_constraintRight_margin="8dp" />
+ />
 
     <TextView
         android:id="@+id/tvWeatherTelop"
@@ -49,8 +44,7 @@
         android:background="#FFDAB9"
         app:layout_constraintTop_toBottomOf="@+id/tvWinfoTitle"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_margin="8dp"
-        app:layout_constraintLeft_margin="8dp" />
+ />
 
     <TextView
         android:id="@+id/tvWeatherDesc"
@@ -62,9 +56,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_margin="8dp"
-        app:layout_constraintLeft_margin="8dp"
-        app:layout_constraintRight_margin="8dp"
-        app:layout_constraintBottom_margin="8dp" />
+ />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
