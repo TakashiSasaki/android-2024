@@ -1,0 +1,70 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLvCityList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="horizontal" />
+
+    <ListView
+        android:id="@+id/lvCityList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glLvCityList"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_margin="0dp"
+        app:layout_constraintBottom_margin="0dp"
+        app:layout_constraintLeft_margin="0dp"
+        app:layout_constraintRight_margin="0dp" />
+
+    <TextView
+        android:id="@+id/tvWinfoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_winfo_title"
+        android:textSize="24sp"
+        android:background="#FFFFE0"
+        app:layout_constraintTop_toBottomOf="@+id/lvCityList"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_margin="8dp"
+        app:layout_constraintLeft_margin="8dp"
+        app:layout_constraintRight_margin="8dp" />
+
+    <TextView
+        android:id="@+id/tvWeatherTelop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:background="#FFDAB9"
+        app:layout_constraintTop_toBottomOf="@+id/tvWinfoTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_margin="8dp"
+        app:layout_constraintLeft_margin="8dp" />
+
+    <TextView
+        android:id="@+id/tvWeatherDesc"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text=""
+        android:background="#98FB98"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeatherTelop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_margin="8dp"
+        app:layout_constraintLeft_margin="8dp"
+        app:layout_constraintRight_margin="8dp"
+        app:layout_constraintBottom_margin="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
