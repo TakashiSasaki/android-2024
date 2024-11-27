@@ -6,12 +6,14 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -78,7 +80,41 @@ class MainActivity : AppCompatActivity() {
         // もしここでメインスレッド側の処理をいろいろやるなら意味があるが。。
         val result = future.get()  //call の終了までブロックされる
         Log.v(DEBUG_TAG, result)
+        //findViewById<TextView>(R.id.tvWeatherDesc).text = result
+        showWeatherInfo(result)
     }//receiveWeatherInfo
+
+    @UiThread
+    private fun showWeatherInfo(result: String) {
+        // ルートJSONオブジェクトを生成。
+        val rootJSON = JSONObject(result)
+        // 都市名文字列を取得。
+        val cityName = rootJSON.getString("name")
+        // 緯度経度情報JSONオブジェクトを取得。
+        val coordJSON = rootJSON.getJSONObject("coord")
+        // 緯度情報文字列を取得。
+        val latitude = coordJSON.getString("lat")
+        // 経度情報文字列を取得。
+        val longitude = coordJSON.getString("lon")
+
+        // 天気情報JSON配列オブジェクトを取得。
+        val weatherJSONArray = rootJSON.getJSONArray("weather")
+        // 現在の天気情報JSONオブジェクトを取得。
+        val weatherJSON = weatherJSONArray.getJSONObject(0)
+        // 現在の天気情報文字列を取得。
+        val weather = weatherJSON.getString("description")
+        // 画面に表示する「〇〇の天気」文字列を生成。
+        val telop = "${cityName}の天気"
+        // 天気の詳細情報を表示する文字列を生成。
+        val desc = "現在は${weather}です。\n緯度は${latitude}度で経度は${longitude}度です。"
+        // 天気情報を表示するTextViewを取得。
+        val tvWeatherTelop = findViewById<TextView>(R.id.tvWeatherTelop)
+        val tvWeatherDesc = findViewById<TextView>(R.id.tvWeatherDesc)
+        // 天気情報を表示。
+        tvWeatherTelop.text = telop
+        tvWeatherDesc.text = desc
+    }
+
 
     private inner class WeatherInfoBackgroundReceiver(url:String) : Callable<String> {
         private val _url = url
