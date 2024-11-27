@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         val future = executeService.submit(backgroundReceiver)
         // もしここでメインスレッド側の処理をいろいろやるなら意味があるが。。
         val result = future.get()  //call の終了までブロックされる
+        Log.v(DEBUG_TAG, result)
     }//receiveWeatherInfo
 
     private inner class WeatherInfoBackgroundReceiver(url:String) : Callable<String> {
