@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -55,12 +57,26 @@ class MainActivity : AppCompatActivity() {
                 val urlFull = "$WEATHERINFO_URL&q=$q&appid=$APP_ID"
                 Log.d(DEBUG_TAG, urlFull)
                 receiveWeatherInfo(urlFull)
-            }
-        }
-    }
+            }//let
+        }//onItemClick
+    }//ListItemClickListener
 
     private fun receiveWeatherInfo(urlFull: String){
-    }
+        val backgroundReceiver = WeatherInfoBackgroundReceiver()
+        val executeService = Executors.newSingleThreadExecutor()
+        val future = executeService.submit(backgroundReceiver)
+        val result = future.get()
+    }//receiveWeatherInfo
+
+    private inner class WeatherInfoBackgroundReceiver() : Callable<String> {
+        override fun call(): String {
+            TODO("Not yet implemented")
+            return "aiueo"
+        }//call
+
+    }//WeatherInfoBackgroundReceiver
+
+
 
 }//MainActivity
 
