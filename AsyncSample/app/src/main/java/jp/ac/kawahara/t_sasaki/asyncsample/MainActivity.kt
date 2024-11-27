@@ -121,6 +121,7 @@ class MainActivity : AppCompatActivity() {
 
         @UiThread
         override fun call(): String {
+            //Thread.sleep(10000)
             var result = ""
             val url = URL(_url)
             val con = url.openConnection() as HttpURLConnection
