@@ -36,7 +36,8 @@ android {
 }
 
 dependencies {
-
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-runtime:2.8.7")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
