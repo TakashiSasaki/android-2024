@@ -1,7 +1,12 @@
 package jp.ac.kawahara.t_sasaki.mapviewsample
 
+import android.os.Handler
 import android.util.Log
 import android.widget.TextView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStream
@@ -19,8 +24,10 @@ class OpenWeatherMap {
     }
 
     // 参考 https://chatgpt.com/share/6799a891-0854-800b-ae77-40724711c7fb
-    fun getUrl(lon: Double, lat: Double): String {
-        return "$WEATHERINFO_URL&lon=$lon&lat=$lat&appid=$APP_ID"
+    private fun getUrl(lon: Double, lat: Double): String {
+        val url = "$WEATHERINFO_URL&lon=$lon&lat=$lat&appid=$APP_ID"
+        Log.v("MapViewSample", url)
+        return url
     }
 
     private fun fetchJsonString(lon: Double, lat: Double): String {
@@ -38,7 +45,7 @@ class OpenWeatherMap {
         return result
     }
 
-    fun getWeather(lon: Double, lat: Double): String {
+    private fun getWeather(lon: Double, lat: Double): String {
         val jsonString = fetchJsonString(lon, lat)
         // ルートJSONオブジェクトを生成。
         val rootJSON = JSONObject(jsonString)
@@ -58,8 +65,18 @@ class OpenWeatherMap {
         // 現在の天気情報文字列を取得。
         val weather = weatherJSON.getString("description")
         return weather
-    }
-}
+    }//getWeather
+
+    fun updateWeather(lon: Double, lat: Double, textViewWeather: TextView){
+        CoroutineScope(Dispatchers.Main).launch{
+            val weather  = withContext(Dispatchers.IO){
+                getWeather(lon, lat)
+                //getWeather(lon, lat).also { textViewWeather.text = it }
+            }//withContext
+            textViewWeather.text = weather
+        }
+    }//updateWeather
+}//OpenWeatherMap
 
 fun is2String(stream: InputStream): String {
     val sb = StringBuilder()

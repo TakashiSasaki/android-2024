@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private inner class WeatherInfoBackgroundReceiver(url:String) : Callable<String> {
         private val _url = url
 

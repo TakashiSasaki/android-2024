@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             // TextViewに表示
             findViewById<TextView>(R.id.textViewLatitude).text = "${latLng.latitude}"
             findViewById<TextView>(R.id.textViewLongitude).text = "${latLng.longitude}"
-        }
-    }
+            val openWeatherMap = OpenWeatherMap()
+            val textViewWeather = findViewById<TextView>(R.id.textViewWeather)
+            openWeatherMap.updateWeather(latLng.longitude, latLng.latitude, textViewWeather)
+        }//onMapClick
+    }//MapClickListener
 }
