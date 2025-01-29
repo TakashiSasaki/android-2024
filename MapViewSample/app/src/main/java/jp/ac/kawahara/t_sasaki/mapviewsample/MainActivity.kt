@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.textViewLongitude).text = "${latLng.longitude}"
             val openWeatherMap = OpenWeatherMap()
             val textViewWeather = findViewById<TextView>(R.id.textViewWeather)
-            openWeatherMap.updateWeather(latLng.longitude, latLng.latitude, textViewWeather)
+            openWeatherMap.updateWeather(latLng.longitude, latLng.latitude, textViewWeather, lifecycleScope)
         }//onMapClick
     }//MapClickListener
 }

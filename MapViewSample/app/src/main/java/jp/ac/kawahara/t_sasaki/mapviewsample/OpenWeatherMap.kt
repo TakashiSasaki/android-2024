@@ -3,6 +3,8 @@ package jp.ac.kawahara.t_sasaki.mapviewsample
 import android.os.Handler
 import android.util.Log
 import android.widget.TextView
+import androidx.annotation.UiThread
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,6 +17,7 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
 import java.nio.charset.StandardCharsets
+import androidx.lifecycle.lifecycleScope
 
 class OpenWeatherMap {
     companion object {
@@ -30,6 +33,7 @@ class OpenWeatherMap {
         return url
     }
 
+    @WorkerThread
     private fun fetchJsonString(lon: Double, lat: Double): String {
         var result = ""
         val url = URL(getUrl(lon, lat))
@@ -67,13 +71,18 @@ class OpenWeatherMap {
         return weather
     }//getWeather
 
-    fun updateWeather(lon: Double, lat: Double, textViewWeather: TextView){
-        CoroutineScope(Dispatchers.Main).launch{
-            val weather  = withContext(Dispatchers.IO){
-                getWeather(lon, lat)
-                //getWeather(lon, lat).also { textViewWeather.text = it }
-            }//withContext
-            textViewWeather.text = weather
+    @UiThread
+    fun updateWeather(lon: Double, lat: Double, textViewWeather: TextView, scope: CoroutineScope){
+        scope.launch{
+            try {
+                val weather = withContext(Dispatchers.IO) {
+                    getWeather(lon, lat)
+                    //getWeather(lon, lat).also { textViewWeather.text = it }
+                }//withContext
+                textViewWeather.text = weather
+            } catch (e: Exception){
+                Log.e("updateWeather", e.localizedMessage)
+            }
         }
     }//updateWeather
 }//OpenWeatherMap
